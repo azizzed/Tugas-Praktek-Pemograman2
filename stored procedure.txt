@@ -1,0 +1,130 @@
+CREATE PROCEDURE tampilpegawai()
+BEGIN
+SELECT*FROM pegawai;
+END
+
+CREATE PROCEDURE tampilpegawaiNIP (vnip VARCHAR (4))
+BEGIN
+SELECT*FROM pegawai WHERE nip = vnip;
+end;
+
+CREATE PROCEDURE tampiljabatanKJ (vkj VARCHAR (4))
+BEGIN
+SELECT*FROM jabatan WHERE kj = vkj;
+END;
+-- menampilkan --
+CALL tampilpegawai ()
+CALL tampilpegawaiNIP ('N18')
+CALL tampiljabatanKJ ('J01')
+
+CREATE PROCEDURE INSERTPEGAWAI 
+(vNIP VARCHAR (4), 
+vNAMA VARCHAR (30), 
+vKOTA VARCHAR  (50), 
+vTGL_LAHIR DATETIME, 
+vJK VARCHAR (1), 
+vKJ VARCHAR (4))
+
+BEGIN
+INSERT INTO pegawai (nip,nama,kota,tgl_lahir,jk,kj)VALUES(vNIP, vNAMA, vKOTA, vTGL_LAHIR, vJK, vKJ);
+END
+
+CALL INSERTPEGAWAI ('N18','Jessi','Sumedang','1993/01/28','P','J80')
+
+SELECT*FROM  pegawai
+
+CREATE PROCEDURE DELETEPEGAWAI (vNIP VARCHAR (4))
+BEGIN
+DELETE FROM pegawai WHERE nip = vNIP;
+END
+
+CALL DELETEPEGAWAI ('N18');
+
+CREATE PROCEDURE UPDATEPEGAWAI
+(vNIP VARCHAR (4),
+vNAMA VARCHAR (30),
+vKOTA VARCHAR (25),
+vTGL_LAHIR DATETIME,
+vJK VARCHAR (1),
+vKJ VARCHAR (4))
+BEGIN
+UPDATE pegawai SET nama = vNAMA, kota = vKOTA, tgl_lahir = vTGL_LAHIR, jk = vJK, kj =vKJ WHERE nip = vNIP;
+END
+
+CALL UPDATEPEGAWAI ('N18','Jessi Januaristi','Sumedang','1993/01/28','P','J80');
+
+SELECT*FROM pegawai
+
+-- latihan --
+
+-- NO.1 --
+CREATE PROCEDURE tampilanak()
+BEGIN
+SELECT*FROM anak;
+END
+
+CREATE PROCEDURE INSERTANAK
+(vNIP VARCHAR (4), 
+vNAMA CHAR (30), 
+vJK CHAR  (2), 
+vUMUR CHAR (2))
+BEGIN
+INSERT INTO anak (nip,nama,jk,umur)VALUES(vNIP, vNAMA, vJK, vUMUR);
+END
+
+
+CREATE PROCEDURE tampiljabatan()
+BEGIN
+SELECT*FROM jabatan;
+END
+
+CREATE PROCEDURE INSERTJABATAN
+(vKJ VARCHAR (4), 
+vJABATAN CHAR (20), 
+vGAJI FLOAT (10,2)) 
+BEGIN
+INSERT INTO jabatan (kj,jabatan,gaji)VALUES(vKJ,vJABATAN,vGAJI);
+END
+
+-- NO.2 --
+CREATE PROCEDURE DELETEANAK (vNIP VARCHAR (4))
+BEGIN
+DELETE FROM anak WHERE nip = vNIP;
+END
+
+CREATE PROCEDURE DELETEJABATAN (vKJ VARCHAR (3))
+BEGIN
+DELETE FROM jabatan WHERE kj = vKJ;
+END
+
+-- NO.3 --
+CREATE PROCEDURE UPDATEANAK
+(vNIP VARCHAR (4),
+vNAMA CHAR (30),
+vJK CHAR (1),
+vUMUR CHAR (2))
+BEGIN
+UPDATE anak SET  nama = vNAMA, jk = vJK, umur = vUMUR  WHERE nip = vNIP;
+END
+
+CREATE PROCEDURE UPDATEJABATAN
+(vKJ VARCHAR (4),
+vJABATAN CHAR (20),
+vGAJI FLOAT (10,2))
+BEGIN
+UPDATE jabatan SET  jabatan = vJABATAN, gaji = vGAJI WHERE kj = vKJ;
+END
+
+
+
+
+CREATE PROCEDURE tampiljmlanakNIP (vnip VARCHAR (4))
+BEGIN
+SELECT*FROM anak WHERE nip = vnip;
+end;
+
+
+call COUNT(anak) tampiljmlanakNIP ('N02');
+
+
+

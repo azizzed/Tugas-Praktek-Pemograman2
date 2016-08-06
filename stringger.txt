@@ -1,0 +1,27 @@
+CREATE TABLE BARANG1
+(
+bar_id INT NOT NULL, bar_nama VARCHAR (255) NOT NULL, bar_stock INT NULL DEFAULT 0,
+CONSTRAINT pk_barang PRIMARY KEY (bar_id)
+)
+
+CREATE TABLE pembelian
+(pem_id INT NOT NULL, bar_id INT NULL, pem_jumlah INT NULL, 
+CONSTRAINT pk_pembelian PRIMARY KEY ( pem_id)
+)
+
+ALTER TABLE pembelian
+ADD CONSTRAINT fk_pembelian_relation_barang1 FOREIGN KEY (bar_id) REFERENCES barang1 (bar_id)
+
+INSERT INTO barang1 ( bar_id,bar_nama) VALUES (1,'AQUA');
+INSERT INTO barang1 ( bar_id,bar_nama) VALUES (2,'TOTAL');
+INSERT INTO barang1 ( bar_id,bar_nama) VALUES (3,'AQUADES');
+
+CREATE TRIGGER tambahstockbarang AFTER INSERT ON pembelian FOR EACH ROW UPDATE barang1 
+SET bar_stock = bar_stock + new.pem_jumlah WHERE barang1.bar_id = new.bar_id
+
+INSERT INTO pembelian (pem_id,bar_id,pem_jumlah) VALUES (1,1,4);
+INSERT INTO pembelian (pem_id,bar_id,pem_jumlah) VALUES (2,3,2);
+INSERT INTO pembelian (pem_id,bar_id,pem_jumlah) VALUES (3,1,1);
+
+
+

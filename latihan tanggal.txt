@@ -1,0 +1,9 @@
+SELECT * from pegawai
+-- LATIHAN NO 1 
+SELECT DATE_FORMAT(NOW(),'hari ini adalah hari %a,%d,%M,%Y,%T');
+
+-- LATIHAN NO 2
+SELECT tgllhr, DATE_ADD(tgllhr,INTERVAL 1 YEAR) AS TANGGAL_1TAHUN FROM pegawai
+
+-- LATIHAN NO 3
+SELECT * FROM pegawai WHERE tgllhr LIKE '%1980%'
