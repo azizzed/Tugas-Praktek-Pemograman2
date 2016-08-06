@@ -125,7 +125,7 @@ end;
 
 
 call COUNT(anak) tampiljmlanakNIP ('N02');
-
+call COUNT(anak) tampiljmlanakNIP ('N01');
 
 
 
